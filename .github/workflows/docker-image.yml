@@ -18,12 +18,12 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.CR_PAT }}
 
     - name: Build Docker image
       run: |
-        docker build -t ghcr.io/${{ github.repository_owner }}/joke-fetcher:latest .
+        docker build -t ghcr.io/${{ github.repository_owner }}/my_joke_app:latest .
 
     - name: Push Docker image
       run: |
-        docker push ghcr.io/${{ github.repository_owner }}/joke-fetcher:latest
+        docker push ghcr.io/${{ github.repository_owner }}/my_joke_app:latest
