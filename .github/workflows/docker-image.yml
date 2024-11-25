@@ -24,3 +24,13 @@ jobs:
       run: |
         docker build -t ghcr.io/bmassin/my_joke_app:latest .
         docker push ghcr.io/bmassin/my_joke_app:latest
+
+    - name: Scan image with Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ghcr.io/bmassin/my_joke_app:latest
+
+    - name: Push Docker image
+      if: success()
+      run: |
+        docker push ghcr.io/bmassin/my_joke_app:latest
